@@ -22,6 +22,6 @@ const generateEventDescriptions = (eventsInput, props, lang) => {
 
 console.log(generateEventDescriptions(events, REQUIRED_PROPS, "bg"));
 
-// optional & required keys - there are two optional props Source & Metadata
+// optional / required keys - there are two optional props Source & Metadata
 //  but they are not in the list of required keys
 // and if they are missing the event will be dropped
