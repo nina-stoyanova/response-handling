@@ -10,16 +10,17 @@ import { events } from "./responseEvents/mockEvents.js";
  *
  * @param {Array} eventsInput
  * @param {Array} REQUIRED_PROPS
+ * @param {string} lang bg/en
  *
  * @returns {Array} - An array of strings
  */
-const generateEventDescriptions = (eventsInput, props) => {
+const generateEventDescriptions = (eventsInput, props, lang) => {
   return eventsInput
     .filter((event) => hasRequiredProps(event, props))
-    .map((event) => formatEventOutput(event));
+    .map((event) => formatEventOutput(event, lang));
 };
 
-console.log(generateEventDescriptions(events, REQUIRED_PROPS));
+console.log(generateEventDescriptions(events, REQUIRED_PROPS, "bg"));
 
 // optional & required keys - there are two optional props Source & Metadata
 //  but they are not in the list of required keys

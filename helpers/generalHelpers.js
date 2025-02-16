@@ -44,16 +44,17 @@ export const formatTimestamp = (timestamp) => {
  * Formats an individual event into a descriptive string.
  *
  * @param {Object} event - The event object to be formatted.
- * @param {Object} event.payload
- * @param {string} event.payload.userName
- * @param {string} event.payload.targetEntity
- * @param {string} event.payload.targetId
- * @param {number} event.timestamp
  *
  * @returns {string}
  */
-export const formatEventOutput = (event) => {
-  return `${event.payload.userName} viewed ${event.payload.targetEntity} ${
-    event.payload.targetId
-  } at ${formatTimestamp(event.timestamp)}`;
-};
+
+export function formatEventOutput(event, language = "en") {
+  if (event.payload.targetEntity === "product") {
+    if (language === "bg") {
+      return `${event.payload.userNameBG} ${event.payload.actionBG} на ${event.payload.productDetails.categoryBG} за $${event.payload.productDetails.price} от ${event.payload.metadata.locationBG} чрез ${event.payload.sourceBG}.`;
+    } else {
+      return `${event.payload.userName} ${event.payload.action} a ${event.payload.productDetails.category} for $${event.payload.productDetails.price} from ${event.payload.metadata.location} via ${event.payload.source}.`;
+    }
+  }
+  return "Invalid event format";
+}
